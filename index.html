@@ -1,7 +1,9 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>
+</head>
+<body>
+    <script>
     document.getElementById('qty').value = 2;
     document.getElementById('dia').value = 20;
     document.getElementById('hydration').value = 60;
@@ -29,8 +31,6 @@
       document.getElementById('results').innerHTML = 'Flour: ' + flour + 'g</br>Water: ' + water + 'ml</br>Yeast: ' + yeast + 'g / ' +(yeast/2.83).toFixed(2) + 'tsp</br>Salt: ' + salt + 'g / ' +(salt/5.69).toFixed(2) + 'tsp</br>Sugar: ' + sugar + 'g / ' + (sugar/4.167).toFixed(2) + 'tsp</br>Olive: ' + olive + 'ml / ' + (olive/4.929).toFixed(2) + 'tsp / ' + (olive/14.7868).toFixed(2) + 'tbsp</br>Weight of doughball: ' + weight + 'g';
     }
   </script>
-</head>
-<body>
   <h1>Pizza Calculator</h1>
   Number of Dough Balls <input type="number" id="qty"></input></br>
   Diameter of Pizza (cm) <input type="number" id="dia"></input></br>
