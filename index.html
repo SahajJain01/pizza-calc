@@ -1,7 +1,6 @@
-<div id="app"></div>
 <h1>Pizza Calculator</h1>
 Number of Dough Balls <input type="number" id="qty"></input></br>
-Weight of Dough Ball <input type="number" id="weight"></input></br>
+Diameter of Pizza <input type="number" id="dia"></input></br>
 Hydration <input type="number" id="hydration"></input></br>
 Yeast <input type="number" id="yeast"></input></br>
 Salt <input type="number" id="salt"></input></br>
@@ -10,10 +9,20 @@ Olive Oil <input type="number" id="olive"></input></br>
 <button onclick="calculate()">Submit</button>
 <p id="results"></p>
 
-<script>  
+<script>
+  document.getElementById('qty').value = 2;
+  document.getElementById('dia').value = 20;
+  document.getElementById('hydration').value = 60;
+  document.getElementById('yeast').value = 1;
+  document.getElementById('salt').value = 2;
+  document.getElementById('sugar').value = 2;
+  document.getElementById('olive').value = 3;
+
+
   function calculate() {
     var qty = document.getElementById('qty').value;
-    var weight = document.getElementById('weight').value;
+    var dia = document.getElementById('dia').value;
+    var weight = Math.round(4.017908525*Math.pow(10,-5)*Math.pow(dia,5) - 6.721341349*Math.pow(10,-3)*Math.pow(dia,4) + 0.431223152*Math.pow(dia,3) - 13.09562775*Math.pow(dia,2) + 194.6689912*dia - 970.1543255);
     var hydration = document.getElementById('hydration').value/100;
     var yeast = document.getElementById('yeast').value/100;
     var salt = document.getElementById('salt').value/100;
@@ -30,7 +39,7 @@ Olive Oil <input type="number" id="olive"></input></br>
     sugar = Math.round((flour*sugar)*5)/5;
     olive = Math.round((flour*olive)*5)/5;
 
-    document.getElementById('results').innerHTML = flour + ' ' + water + ' ' + yeast + ' ' + salt + ' ' + sugar + ' ' + olive;
+    document.getElementById('results').innerHTML = 'Flour: ' + flour + 'g</br>Water: ' + water + 'ml</br>Yeast: ' + yeast + 'g / ' +(yeast/2.83).toFixed(2) + 'tsp</br>Salt: ' + salt + 'g / ' +(salt/5.69).toFixed(2) + 'tsp</br>Sugar: ' + sugar + 'g / ' + (sugar/4.167).toFixed(2) + 'tsp</br>Olive: ' + olive + 'ml / ' + (olive/4.929).toFixed(2) + 'tsp / ' + (olive/14.7868).toFixed(2) + 'tbsp</br>Weight of doughball: ' + weight + 'g';
 
     console.log()
   }
