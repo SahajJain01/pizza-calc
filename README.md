@@ -1,3 +1,3 @@
-# js-srve3n
+Pizza Calculator
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/js-srve3n)
+by @SahajJain01 and @sachinnitish
