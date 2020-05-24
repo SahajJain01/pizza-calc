@@ -1,45 +1,103 @@
+<meta charset="ISO-8859-1"> 
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Saira:wght@100&display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  
 </head>
 <body>
-    <script>
-    document.getElementById('qty').value = 2;
-    document.getElementById('dia').value = 20;
-    document.getElementById('hydration').value = 60;
-    document.getElementById('yeast').value = 1;
-    document.getElementById('salt').value = 2;
-    document.getElementById('sugar').value = 2;
-    document.getElementById('olive').value = 3;
-    function calculate() {
-      var qty = document.getElementById('qty').value;
-      var dia = document.getElementById('dia').value;
-      var weight = Math.round(4.017908525*Math.pow(10,-5)*Math.pow(dia,5) - 6.721341349*Math.pow(10,-3)*Math.pow(dia,4) + 0.431223152*Math.pow(dia,3) - 13.09562775*Math.pow(dia,2) + 194.6689912*dia - 970.1543255);
-      var hydration = document.getElementById('hydration').value/100;
-      var yeast = document.getElementById('yeast').value/100;
-      var salt = document.getElementById('salt').value/100;
-      var sugar = document.getElementById('sugar').value/100;
-      var olive = document.getElementById('olive').value/100;
-      var sum = qty * weight;
-      flour = Math.round(sum/(1+(hydration)));
-      flour = Math.round(flour/5)*5;
-      water = sum-flour;
-      yeast = Math.round((flour*yeast)*5)/5;
-      salt = Math.round((flour*salt)*5)/5;
-      sugar = Math.round((flour*sugar)*5)/5;
-      olive = Math.round((flour*olive)*5)/5;
-      document.getElementById('results').innerHTML = 'Flour: ' + flour + 'g</br>Water: ' + water + 'ml</br>Yeast: ' + yeast + 'g / ' +(yeast/2.83).toFixed(2) + 'tsp</br>Salt: ' + salt + 'g / ' +(salt/5.69).toFixed(2) + 'tsp</br>Sugar: ' + sugar + 'g / ' + (sugar/4.167).toFixed(2) + 'tsp</br>Olive: ' + olive + 'ml / ' + (olive/4.929).toFixed(2) + 'tsp / ' + (olive/14.7868).toFixed(2) + 'tbsp</br>Weight of doughball: ' + weight + 'g';
-    }
-  </script>
-  <h1>Pizza Calculator</h1>
-  Number of Dough Balls <input type="number" id="qty"></input></br>
-  Diameter of Pizza (cm) <input type="number" id="dia"></input></br>
-  Hydration (%) <input type="number" id="hydration"></input></br>
-  Yeast (%) <input type="number" id="yeast"></input></br>
-  Salt (%) <input type="number" id="salt"></input></br>
-  Sugar (%) <input type="number" id="sugar"></input></br>
-  Olive Oil (%) <input type="number" id="olive"></input></br>
-  <button onclick="calculate()">Submit</button>
-  <p id="results"></p>
+    
+  <div id="container" class="flex-container">
+    <div class="panel-left">
+      <div class="header">
+        <h1>Pizza Calculator</h1>
+      </div>
+      <div class="form">
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Number of Dough Balls</label>
+            <input type="text" id="qty" name="qty" class="form-control"></input>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Diameter of Pizza (cm)</label>
+            <input type="text" id="dia" name="dia" class="form-control"></input>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Hydration (%)</label>
+            <input type="text" id="hydration" name="hydration" class="form-control"></input>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Yeast (%)</label>
+            <input type="text" id="yeast" name="yeast" class="form-control"></input>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Salt (%)</label>
+            <input type="text" id="salt" name="salt" class="form-control"></input>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Sugar (%)</label>
+            <input type="text" id="sugar" name="sugar" class="form-control"></input>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Olive Oil (%)</label>
+            <input type="text" id="olive" name="olive" class="form-control"></input>
+          </div>
+  
+          <button type="submit" class="btn btn-dark form-control">Submit</button>
+        </form>
+      </div>
+    </div>
+    
+  </div>
+  <div class="fixed-panel">
+    <div class="header">
+      <h1>Pizza Calculator</h1>
+    </div>
+    <div class="form">
+      <form>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Number of Dough Balls</label>
+          <input type="text" id="qty" name="qty" class="form-control"></input>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Diameter of Pizza (cm)</label>
+          <input type="text" id="dia" name="dia" class="form-control"></input>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Hydration (%)</label>
+          <input type="text" id="hydration" name="hydration" class="form-control"></input>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Yeast (%)</label>
+          <input type="text" id="yeast" name="yeast" class="form-control"></input>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Salt (%)</label>
+          <input type="text" id="salt" name="salt" class="form-control"></input>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Sugar (%)</label>
+          <input type="text" id="sugar" name="sugar" class="form-control"></input>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Olive Oil (%)</label>
+          <input type="text" id="olive" name="olive" class="form-control"></input>
+        </div>
+
+        <button type="submit" class="btn btn-dark form-control">Submit</button>
+      </form>
+    </div>
+
+  </div>
+
+  <script src="index.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  
 </body>
+
 </html>
