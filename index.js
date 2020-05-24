@@ -1,6 +1,14 @@
 // Import stylesheets
-//import "./style.css";
-//import $ from "jquery";
+import "./style.css";
+import $ from "jquery";
+
+document.getElementById("qty").value = 2;
+document.getElementById("dia").value = 20;
+document.getElementById("hydration").value = 60;
+document.getElementById("yeast").value = 1;
+document.getElementById("salt").value = 2;
+document.getElementById("sugar").value = 2;
+document.getElementById("olive").value = 3;
 
 $("form").submit(function (event) {
 	$("#results").empty();
@@ -30,9 +38,9 @@ $("form").submit(function (event) {
 	var sugar = temp_array[5] / 100;
 	var olive = temp_array[6] / 100;
 	var sum = temp_array[0] * weight;
-	flour = Math.round(sum / (1 + hydration));
+	var flour = Math.round(sum / (1 + hydration));
 	flour = Math.round(flour / 5) * 5;
-	water = sum - flour;
+	var water = sum - flour;
 	yeast = Math.round(flour * yeast * 5) / 5;
 	salt = Math.round(flour * salt * 5) / 5;
 	sugar = Math.round(flour * sugar * 5) / 5;
