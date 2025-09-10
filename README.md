@@ -7,6 +7,7 @@ Super-smooth, dependency-free pizza dough calculator with an unconventional UI. 
 ![Dependencies](https://img.shields.io/badge/Dependencies-None-brightgreen?style=for-the-badge)
 ![CI](https://img.shields.io/badge/CI-GitHub_Actions-2088FF?logo=githubactions&logoColor=white&style=for-the-badge)
 ![Container](https://img.shields.io/badge/Container-Docker-2496ED?logo=docker&logoColor=white&style=for-the-badge)
+[![Live](https://img.shields.io/badge/Live-pizza.sahajjain.com-2088FF?style=for-the-badge&logo=googlechrome&logoColor=white)](https://pizza.sahajjain.com)
 
 ## Highlights
 - Zero deps: plain `index.html`, `index.js`, `app.css`.
