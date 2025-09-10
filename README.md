@@ -1,6 +1,6 @@
-# Pizza Lab � Dough Calculator
+# Pizza Lab - Dough Calculator
 
-Super-smooth, dependency-free pizza dough calculator.
+Super-smooth, dependency-free pizza dough calculator with an unconventional UI. Built with Bun and vanilla JS.
 
 ![Runtime](https://img.shields.io/badge/Runtime-Bun-000000?logo=bun&logoColor=white&style=for-the-badge)
 ![Vanilla JS](https://img.shields.io/badge/JS-Vanilla-F7DF1E?logo=javascript&logoColor=000&style=for-the-badge)
@@ -11,16 +11,16 @@ Super-smooth, dependency-free pizza dough calculator.
 ## Highlights
 - Zero deps: plain `index.html`, `index.js`, `app.css`.
 - Live updates: tweak sliders, see results instantly.
-- Unique visuals: animated background �slices�, hydration fill bar.
+- Unique visuals: animated background "slices" and hydration fill bar.
 - Accessible: keyboard-friendly controls and ARIA live region.
 
 ## Quick Start
-- Just open `index.html` in your browser.
+- Open `index.html` in your browser.
 
 ## Using Bun
-- `bun dev` � serve current folder at `http://localhost:3000`
-- `bun build` � output static site to `dist/`
-- `bun prod` � build, then serve `dist/`
+- `bun dev` - serve current folder at `http://localhost:3000`
+- `bun build` - output static site to `dist/`
+- `bun prod` - build, then serve `dist/`
 
 ## Docker
 - Build: `docker build -t pizza-calc .`
@@ -33,19 +33,19 @@ Super-smooth, dependency-free pizza dough calculator.
 ## Math Notes
 - Doughball weight is estimated from diameter via a 5th-degree polynomial:
   `4.0179e-5*x^5 - 6.7213e-3*x^4 + 0.4312*x^3 - 13.0956*x^2 + 194.669*x - 970.154`
-- Flour rounds to the nearest 5 g (like the original).
+- Flour rounds to the nearest 5 g.
 - tsp/tbsp conversions mirror the original constants.
 
 ## Project Structure
-- `index.html` � UI markup
-- `app.css` � theme + animations + layout
-- `index.js` � calculations, formatting, live updates
-- `server.js` � tiny static file server (Bun/Node-compatible)
-- `scripts/build.mjs` � copy static files to `dist/`
-- `scripts/prod.mjs` � build, then serve `dist/`
-- `.github/workflows/build-push-deploy.yml` � container build/push + remote restart
+- `index.html` - UI markup
+- `app.css` - theme, animations, layout
+- `index.js` - calculations, formatting, live updates
+- `server.js` - tiny static file server
+- `scripts/build.mjs` - copy static files to `dist/`
+- `scripts/prod.mjs` - build, then serve `dist/`
+- `.github/workflows/build-push-deploy.yml` - container build/push + remote restart
 
 ## Roadmap
-- Add unit toggle (metric/US)
+- Unit toggle (metric/US)
 - Print/shareable recipe view
-- Theming (dark/bright kitchen modes)
+- Themes (dark/bright kitchen modes)
