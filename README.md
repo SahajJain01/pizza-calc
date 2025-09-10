@@ -1,6 +1,6 @@
-# ?? Pizza Lab — Dough Calculator
+# Pizza Lab ï¿½ Dough Calculator
 
-Super-smooth, dependency-free pizza dough calculator with an unconventional UI. Built with love, Bun, and vanilla JS.
+Super-smooth, dependency-free pizza dough calculator.
 
 ![Runtime](https://img.shields.io/badge/Runtime-Bun-000000?logo=bun&logoColor=white&style=for-the-badge)
 ![Vanilla JS](https://img.shields.io/badge/JS-Vanilla-F7DF1E?logo=javascript&logoColor=000&style=for-the-badge)
@@ -8,28 +8,25 @@ Super-smooth, dependency-free pizza dough calculator with an unconventional UI. 
 ![CI](https://img.shields.io/badge/CI-GitHub_Actions-2088FF?logo=githubactions&logoColor=white&style=for-the-badge)
 ![Container](https://img.shields.io/badge/Container-Docker-2496ED?logo=docker&logoColor=white&style=for-the-badge)
 
-— Unconventional dough alchemy meets slick UX.
-
 ## Highlights
 - Zero deps: plain `index.html`, `index.js`, `app.css`.
 - Live updates: tweak sliders, see results instantly.
-- Unique visuals: animated background “slices”, hydration fill bar.
-- Clean numbers: no float artifacts; 1/8-step tsp fractions.
+- Unique visuals: animated background ï¿½slicesï¿½, hydration fill bar.
 - Accessible: keyboard-friendly controls and ARIA live region.
 
 ## Quick Start
 - Just open `index.html` in your browser.
 
 ## Using Bun
-- `bun dev` — serve current folder at `http://localhost:3000`
-- `bun build` — output static site to `dist/`
-- `bun prod` — build, then serve `dist/`
+- `bun dev` ï¿½ serve current folder at `http://localhost:3000`
+- `bun build` ï¿½ output static site to `dist/`
+- `bun prod` ï¿½ build, then serve `dist/`
 
 ## Docker
 - Build: `docker build -t pizza-calc .`
 - Run: `docker run -p 3000:3000 pizza-calc`
 
-## CI/CD (optional)
+## CI/CD
 - GitHub Actions builds and pushes a multi-arch image to GHCR, then restarts a remote service via SSH.
 - Required secrets: `NIX_SSH_USER`, `NIX_SSH_HOST`, `NIX_SSH_KEY` (private key). Optional: `REMOTE_SERVICE_NAME` (defaults to `pizza-calc`).
 
@@ -40,19 +37,15 @@ Super-smooth, dependency-free pizza dough calculator with an unconventional UI. 
 - tsp/tbsp conversions mirror the original constants.
 
 ## Project Structure
-- `index.html` — UI markup
-- `app.css` — theme + animations + layout
-- `index.js` — calculations, formatting, live updates
-- `server.js` — tiny static file server (Bun/Node-compatible)
-- `scripts/build.mjs` — copy static files to `dist/`
-- `scripts/prod.mjs` — build, then serve `dist/`
-- `.github/workflows/build-push-deploy.yml` — container build/push + remote restart
+- `index.html` ï¿½ UI markup
+- `app.css` ï¿½ theme + animations + layout
+- `index.js` ï¿½ calculations, formatting, live updates
+- `server.js` ï¿½ tiny static file server (Bun/Node-compatible)
+- `scripts/build.mjs` ï¿½ copy static files to `dist/`
+- `scripts/prod.mjs` ï¿½ build, then serve `dist/`
+- `.github/workflows/build-push-deploy.yml` ï¿½ container build/push + remote restart
 
 ## Roadmap
 - Add unit toggle (metric/US)
 - Print/shareable recipe view
 - Theming (dark/bright kitchen modes)
-
-## Credits
-- Original idea by @SahajJain01 (and collaborators)
-- UI/logic refresh and Bun tooling by contributors
