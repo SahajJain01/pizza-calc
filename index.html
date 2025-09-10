@@ -1,73 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pizza Calculator</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Fun, unconventional type -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Monoton&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css2?family=Saira:wght@100&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-
-</head>
-
-<body>
-
-  <div id="container" class="flex-container">
-    <div class="panel-left">
-      <div class="header">
-        <h1>Pizza Calculator</h1>
-      </div>
-      <div class="form">
-        <form>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Number of Dough Balls</label>
-            <input type="text" id="qty" name="qty" class="form-control"></input>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Diameter of Pizza (cm)</label>
-            <input type="text" id="dia" name="dia" class="form-control"></input>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Hydration (%)</label>
-            <input type="text" id="hydration" name="hydration" class="form-control"></input>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Yeast (%)</label>
-            <input type="text" id="yeast" name="yeast" class="form-control"></input>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Salt (%)</label>
-            <input type="text" id="salt" name="salt" class="form-control"></input>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Sugar (%)</label>
-            <input type="text" id="sugar" name="sugar" class="form-control"></input>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Olive Oil (%)</label>
-            <input type="text" id="olive" name="olive" class="form-control"></input>
-          </div>
-          <button type="submit" class="btn btn-dark form-control">Submit</button>
-          <p style="margin-top:25px;" id="results"></p>
-        </form>
-      </div>
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <div class="bg">
+      <div class="bg-slice slice-a"></div>
+      <div class="bg-slice slice-b"></div>
+      <div class="bg-slice slice-c"></div>
     </div>
-  </div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  <script src="index.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
-  </script>
+    <header class="hero">
+      <h1 class="logo"><span>Pizza</span><span>Lab</span></h1>
+      <p class="tag">Unconventional dough alchemy</p>
+    </header>
 
-</body>
+    <main class="wrap">
+      <section class="panel controls">
+        <form id="calcForm" autocomplete="off">
+          <div class="field">
+            <label for="qty">Dough Balls</label>
+            <input type="number" id="qty" name="qty" min="1" step="1" value="2" />
+          </div>
 
-</html>
+          <div class="field field-diameter" id="diameterField">
+            <label for="dia">Diameter (cm)</label>
+            <input type="range" id="dia" name="dia" min="15" max="40" step="1" value="20" />
+            <output id="diaOut" for="dia">20 cm</output>
+          </div>
+
+          <div class="field field-hydration" id="hydrationField">
+            <label for="hydration">Hydration (%)</label>
+            <input type="range" id="hydration" name="hydration" min="50" max="80" step="1" value="60" />
+            <output id="hydrationOut" for="hydration">60%</output>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="yeast">Yeast (%)</label>
+              <input type="number" id="yeast" name="yeast" min="0" step="0.1" value="1" />
+            </div>
+            <div class="field">
+              <label for="salt">Salt (%)</label>
+              <input type="number" id="salt" name="salt" min="0" step="0.1" value="2" />
+            </div>
+            <div class="field">
+              <label for="sugar">Sugar (%)</label>
+              <input type="number" id="sugar" name="sugar" min="0" step="0.1" value="2" />
+            </div>
+            <div class="field">
+              <label for="olive">Olive Oil (%)</label>
+              <input type="number" id="olive" name="olive" min="0" step="0.1" value="3" />
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="button" id="copyBtn">Copy Recipe</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel recipe" aria-live="polite">
+        <div class="receipt">
+          <div class="receipt-head">
+            <div class="brand">Pizza Lab</div>
+            <div class="sub">Dough Manifest</div>
+          </div>
+          <div class="line">
+            <span>Flour</span><span id="flourOut">—</span>
+          </div>
+          <div class="line">
+            <span>Water</span><span id="waterOut">—</span>
+          </div>
+          <div class="line">
+            <span>Yeast</span><span id="yeastOut">—</span>
+          </div>
+          <div class="line">
+            <span>Salt</span><span id="saltOut">—</span>
+          </div>
+          <div class="line">
+            <span>Sugar</span><span id="sugarOut">—</span>
+          </div>
+          <div class="line">
+            <span>Olive Oil</span><span id="oliveOut">—</span>
+          </div>
+          <div class="rule"></div>
+          <div class="line">
+            <span>Doughball Weight</span><span id="ballOut">—</span>
+          </div>
+          <div class="line">
+            <span>Balls</span><span id="ballsOut">—</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <span>by @SahajJain01</span>
+    </footer>
+
+    <script src="index.js"></script>
+  </body>
+  </html>
