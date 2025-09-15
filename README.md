@@ -27,6 +27,13 @@ Super-smooth, dependency-free pizza dough calculator with an unconventional UI. 
 - Build: `docker build -t pizza-calc .`
 - Run: `docker run -p 3000:3000 pizza-calc`
 
+## Metrics
+- Endpoint: `GET /metrics` on the same HTTP port.
+- Enable/disable: set `METRICS_ENABLED=true|false` (default `true`).
+- Default labels: `service` is `APP_NAME` or package name.
+- Contents: Prometheus text format with default process/node metrics and custom `http_requests_total` and `http_request_duration_seconds`.
+- Note: expose `/metrics` only internally; have reverse proxies block public access. Prometheus should scrape it from inside your network.
+
 ## CI/CD
 - GitHub Actions builds and pushes a multi-arch image to GHCR, then restarts a remote service via SSH.
 - Required secrets: `NIX_SSH_USER`, `NIX_SSH_HOST`, `NIX_SSH_KEY` (private key). Optional: `REMOTE_SERVICE_NAME` (defaults to `pizza-calc`).

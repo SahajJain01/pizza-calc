@@ -1,6 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const metrics = require('./metrics');
 
 const port = process.env.PORT || 3000;
 
@@ -34,8 +35,19 @@ const TYPES = {
 };
 
 const server = http.createServer((req, res) => {
-  let reqPath = decodeURIComponent(req.url.split('?')[0]);
+  let reqPath = decodeURIComponent((req.url || '/').split('?')[0]);
   if (reqPath === '/') reqPath = '/index.html';
+
+  // Serve metrics if enabled and requested
+  if (metrics.enabled && req.method === 'GET' && reqPath === '/metrics') {
+    // Do not instrument the metrics endpoint itself
+    return void metrics.serveMetrics(res);
+  }
+
+  // Instrument all other requests
+  if (metrics.enabled) {
+    try { metrics.instrumentRequest(req.method || 'GET', reqPath, res); } catch (_) {}
+  }
 
   const filePath = path.join(root, reqPath);
 
