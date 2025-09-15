@@ -1,16 +1,17 @@
 # Pizza Lab - Dough Calculator
 
-Super-smooth, dependency-free pizza dough calculator with an unconventional UI. Built with Bun and vanilla JS.
+Super-smooth pizza dough calculator with an unconventional UI. The UI is dependency-free; the tiny Bun server adds a single runtime dependency for Prometheus metrics.
 
 ![Runtime](https://img.shields.io/badge/Runtime-Bun-000000?logo=bun&logoColor=white&style=for-the-badge)
 ![Vanilla JS](https://img.shields.io/badge/JS-Vanilla-F7DF1E?logo=javascript&logoColor=000&style=for-the-badge)
-![Dependencies](https://img.shields.io/badge/Dependencies-None-brightgreen?style=for-the-badge)
+![Dependencies](https://img.shields.io/badge/Dependencies-1-brightgreen?style=for-the-badge)
 ![CI](https://img.shields.io/badge/CI-GitHub_Actions-2088FF?logo=githubactions&logoColor=white&style=for-the-badge)
 ![Container](https://img.shields.io/badge/Container-Docker-2496ED?logo=docker&logoColor=white&style=for-the-badge)
 [![Live](https://img.shields.io/badge/Live-pizza.sahajjain.com-2088FF?style=for-the-badge&logo=googlechrome&logoColor=white)](https://pizza.sahajjain.com)
 
 ## Highlights
-- Zero deps: plain `index.html`, `index.js`, `app.css`.
+- Dependency-free UI: plain `index.html`, `index.js`, `app.css`.
+- Metrics-ready server: Prometheus `/metrics` via `prom-client`.
 - Live updates: tweak sliders, see results instantly.
 - Unique visuals: animated background "slices" and hydration fill bar.
 - Accessible: keyboard-friendly controls and ARIA live region.
@@ -19,6 +20,7 @@ Super-smooth, dependency-free pizza dough calculator with an unconventional UI. 
 - Open `index.html` in your browser.
 
 ## Using Bun
+- `bun install` - install server runtime deps (prom-client)
 - `bun dev` - serve current folder at `http://localhost:3000`
 - `bun build` - output static site to `dist/`
 - `bun prod` - build, then serve `dist/`
@@ -32,7 +34,7 @@ Super-smooth, dependency-free pizza dough calculator with an unconventional UI. 
 - Enable/disable: set `METRICS_ENABLED=true|false` (default `true`).
 - Default labels: `service` is `APP_NAME` or package name.
 - Contents: Prometheus text format with default process/node metrics and custom `http_requests_total` and `http_request_duration_seconds`.
-- Note: expose `/metrics` only internally; have reverse proxies block public access. Prometheus should scrape it from inside your network.
+- Security: expose `/metrics` only internally; have reverse proxies block public access. Prometheus should scrape it from inside your network.
 
 ## CI/CD
 - GitHub Actions builds and pushes a multi-arch image to GHCR, then restarts a remote service via SSH.

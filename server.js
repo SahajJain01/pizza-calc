@@ -1,7 +1,19 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const metrics = require('./metrics');
+
+// Metrics toggle (default: enabled)
+const METRICS_ENABLED = !['false', '0'].includes(String(process.env.METRICS_ENABLED || 'true').toLowerCase());
+let metrics;
+if (METRICS_ENABLED) {
+  try {
+    metrics = require('./metrics');
+  } catch (e) {
+    // If prom-client is not available, disable metrics gracefully
+    console.warn('Metrics disabled (prom-client not available):', e && e.message);
+    metrics = null;
+  }
+}
 
 const port = process.env.PORT || 3000;
 
@@ -34,22 +46,50 @@ const TYPES = {
   '.gif': 'image/gif'
 };
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
   let reqPath = decodeURIComponent((req.url || '/').split('?')[0]);
   if (reqPath === '/') reqPath = '/index.html';
 
-  // Serve metrics if enabled and requested
-  if (metrics.enabled && req.method === 'GET' && reqPath === '/metrics') {
-    // Do not instrument the metrics endpoint itself
-    return void metrics.serveMetrics(res);
+  // Handle /metrics route if enabled
+  if (req.method === 'GET' && reqPath === '/metrics') {
+    if (!METRICS_ENABLED || !metrics) {
+      res.writeHead(404);
+      res.end('Not Found');
+      return;
+    }
+    try {
+      const body = await metrics.register.metrics();
+      res.statusCode = 200;
+      res.setHeader('Content-Type', metrics.register.contentType);
+      res.setHeader('Cache-Control', 'no-store');
+      res.end(body);
+    } catch (err) {
+      res.writeHead(500);
+      res.end('Internal Server Error');
+    }
+    return;
   }
 
-  // Instrument all other requests
-  if (metrics.enabled) {
-    try { metrics.instrumentRequest(req.method || 'GET', reqPath, res); } catch (_) {}
-  }
+  // Basic HTTP instrumentation (skip /metrics)
+  const shouldInstrument = METRICS_ENABLED && !!metrics;
+  const routeLabel = reqPath; // no framework templating; use path
+  const methodLabel = (req.method || 'GET').toUpperCase();
+  const endTimer = shouldInstrument
+    ? metrics.httpRequestDurationSeconds.startTimer({ method: methodLabel, route: routeLabel, service: metrics.serviceName })
+    : null;
 
   const filePath = path.join(root, reqPath);
+
+  // After response finishes, record metrics
+  if (shouldInstrument) {
+    res.on('finish', () => {
+      const status = String(res.statusCode || 0);
+      metrics.httpRequestsTotal
+        .labels({ method: methodLabel, route: routeLabel, status, service: metrics.serviceName })
+        .inc();
+      if (endTimer) endTimer({ status });
+    });
+  }
 
   // Prevent path traversal
   if (!filePath.startsWith(root)) {
