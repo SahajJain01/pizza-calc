@@ -35,6 +35,7 @@ Super-smooth pizza dough calculator with an unconventional UI. The UI is depende
 - Default labels: `service` is `APP_NAME` or package name.
 - Contents: Prometheus text format with default process/node metrics and custom `http_requests_total` and `http_request_duration_seconds`.
 - Security: expose `/metrics` only internally; have reverse proxies block public access. Prometheus should scrape it from inside your network.
+- Grafana dashboard: https://grafana.sahajjain.com/d/bun-apps-overview/
 
 ## CI/CD
 - GitHub Actions builds and pushes a multi-arch image to GHCR, then restarts a remote service via SSH.
